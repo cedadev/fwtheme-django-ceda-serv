@@ -1,83 +1,35 @@
+{% extends "fwtheme_django/layout.html" %}
 {% load staticfiles cookielaw_tags i18n %}
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block head_title %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    {% block blog_feeds %}
-    {% endblock %}
     
     {% block stylesheets %}
-    <!-- Bootstrap Core
-    CSS -->
-    <link rel="stylesheet" href="{% static "4/flatly/bootstrap.css" %}" media="screen">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static "_assets/css/custom.min.css" %}">
-    <link rel="stylesheet" href="{% static "_assets/css/org-custom.css" %}">
+        <!-- Bootstrap Core
+        CSS -->
+        <link rel="stylesheet" href="{% static "4/flatly/bootstrap.css" %}" media="screen">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static "_assets/css/custom.min.css" %}">
+        <link rel="stylesheet" href="{% static "_assets/css/org-custom.css" %}">
 
-    {# some customisations go here before ceda theme styling #}
-    {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
+        {# some customisations go here before ceda theme styling #}
+        {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
 
-    <link href="{% static "fwtheme_django/css/fw-custom.css" %}" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{% static "fwtheme_django/css/fw-custom.css" %}" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    {# most further customisations can go here, after ceda theme styling #}
-    {% block stylesheets_extra %}{% endblock %}
+        {# most further customisations can go here, after ceda theme styling #}
+        {% block stylesheets_extra %}{% endblock %}
 
     {% endblock stylesheets %}
-
-    {% block head_js %}
-      <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
-    {% endblock head_js %}
-
-    {% block head_js_extra %}{% endblock head_js_extra %}
-
-  </head>
-  <body id="{% block body_id %}body{% endblock body_id %}">
-  
-  {% block cookielaw_banner %}
-      {% if 'cookielaw_accepted' not in request.COOKIES %}
-
-      <div class="container-fluid">
-            <div class="alert alert-info text-center" id="CookielawBanner">
-            This website and other CEDA sites use cookies.
-            By continuing to use this website you are agreeing to our use of cookies.&nbsp;
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary"
-                            onclick="javascript:Cookielaw.createCookielawCookie();">OK</a>
-
-                    <button type="button" class="btn btn-secondary"
-                            onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
-                </div>
-            </div>
-        </div>
-      {% endif %}
-  {% endblock %}
  
-    {% block navbar_main %}
-    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-      <div class="container-fluid">
-        {% block navbar_branding %}
-        <a href="../" class="navbar-brand">
-          <img src="{% static "_assets/img/ceda_logo_transp_white_h80.png" %}" alt="CEDA logo">
-        </a>
-        {% endblock navbar_branding %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        {% block navigation %}
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            {% block navbar_dropdown %}
-            {% endblock navbar_dropdown %}
-        </div>
-        {% endblock navigation %}
-      </div>
-    </div>
-    {% endblock navbar_main %}
+    {% block navbar_branding %}
+    <a href="../" class="navbar-brand">
+        <img src="{% static "_assets/img/ceda_logo_transp_white_h80.png" %}" alt="CEDA logo">
+    </a>
+    {% endblock navbar_branding %}
+    
+    {% block navbar_dropdown %}
+    {% endblock navbar_dropdown %}
+        
 
     {% block page_special %}
     {% endblock %}
@@ -99,27 +51,27 @@
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
                 {% block notifications %}
-                {% if messages %}
-                      {% for message in messages %}
-                          {% if 'success' in message.tags %}
-                              <div class="alert alert-with-icon alert-success" role="alert">
-                                  <i class="fa fa-check-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% elif 'error' in message.tags %}
-                              <div class="alert alert-with-icon alert-danger" role="alert">
-                                  <i class="fa fa-exclamation-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% elif 'warning' in message.tags %}
-                              <div class="alert alert-with-icon alert-warning" role="alert">
-                                  <i class="fa fa-exclamation-triangle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% else %}
-                              <div class="alert alert-with-icon alert-info" role="alert">
-                                  <i class="fa fa-info-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% endif %}
-                      {% endfor %}
-                {% endif %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'success' in message.tags %}
+                                <div class="alert alert-with-icon alert-success" role="alert">
+                                    <i class="fa fa-check-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% elif 'error' in message.tags %}
+                                <div class="alert alert-with-icon alert-danger" role="alert">
+                                    <i class="fa fa-exclamation-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% elif 'warning' in message.tags %}
+                                <div class="alert alert-with-icon alert-warning" role="alert">
+                                    <i class="fa fa-exclamation-triangle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-with-icon alert-info" role="alert">
+                                    <i class="fa fa-info-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endblock %}  
               
             </div>
@@ -165,11 +117,3 @@
         </div>
       </footer>
       {% endblock footer %}
-
-
-    <script src="{% static "_vendor/jquery/dist/jquery.min.js" %}"></script>
-    <script src="{% static "_vendor/popper.js/dist/umd/popper.min.js" %}"></script>
-    <script src="{% static "_vendor/bootstrap/dist/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "_assets/js/custom.js" %}"></script>
-  </body>
-</html>
