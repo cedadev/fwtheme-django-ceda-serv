@@ -1,4 +1,4 @@
-co# fwtheme-django-ceda-serv
+# fwtheme-django-ceda-serv
 
 Django app providing Django framework theme for Django-based web apps, themed for CEDA Services. Requires lower-level fwtheme-django.
 
