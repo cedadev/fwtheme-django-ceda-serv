@@ -10,4 +10,11 @@ Django app providing Django framework theme for Django-based web apps, themed fo
 $ pip install git+https://github.com/cedadev/fwtheme-django-ceda-serv.git
 ```
 
-In `settings.py`, this app should have an entry in INSTALLED_APPS *before* fwtheme_django for correct precedence, as its templates should override those of `fwtheme-django`.
+In `settings.py`, this app should have an entry in INSTALLED_APPS *before* fwtheme_django for correct precedence, as its templates should override those of `fwtheme-django`. Similarly with orgtheme-ceda-serv and orgtheme:
+
+```
+    'fwtheme_django_ceda_serv',
+    'fwtheme_django',
+    'orgtheme_ceda_serv',
+    'orgtheme',
+```
