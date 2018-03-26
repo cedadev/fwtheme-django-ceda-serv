@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 here = os.path.abspath(os.path.dirname(__file__))
 
 try:
-    import ceda_theme.__version__ as version
+    import fwtheme_django_ceda_serv.__version__ as version
 except ImportError:
     # If we get an import error, find the version string manually
     version = "unknown"
