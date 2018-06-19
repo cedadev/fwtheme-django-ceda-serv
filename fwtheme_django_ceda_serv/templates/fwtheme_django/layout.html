@@ -28,6 +28,8 @@
     </a>
     {% endblock navbar_branding %}
     
+    {% block navigation %}
+    
     {% block navbar_dropdown %}
        <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">
@@ -50,14 +52,12 @@
               <a class="nav-link" href="http://www.ceda.ac.uk/blog/">News</a>
             </li>
           </ul>
-
         </div>
     {% endblock navbar_dropdown %}
-
-    {% block user_status %}
     
-      {% ceda_cookie_enabled as show_user_status %}
-      {% if show_user_status %}
+    {% ceda_cookie_enabled as show_user_status %}
+    {% if show_user_status %}
+    
       <div class="dropdown">
         {% userid_from_cookie as userid %}
         {% if userid %}
@@ -100,9 +100,10 @@
         </ul>
         {% endif %}
       </div>
-      {% endif %}
     
-    {% endblock user_status %}
+    {% endif %}
+    
+    {% endblock navigation %}
 
     {% block page_special %}
     {% endblock %}
