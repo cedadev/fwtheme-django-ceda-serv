@@ -9,27 +9,30 @@ __copyright__ = "Copyright 2018 UK Science and Technology Facilities Council"
 from django import template
 from django.utils.http import urlencode
 
-from dj_security_middleware.middleware import LOGOUT, REGISTRATION,\
-    login_service, get_userid_from_request, get_openid_from_request, redirect_field_name
+security_module_loaded = True
+try:
+    from dj_security_middleware.middleware import LOGOUT, REGISTRATION,\
+        login_service, get_userid_from_request, get_openid_from_request, redirect_field_name
+except ImportError:
+    security_module_loaded = False
 
 
 # Template tags
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
-def user_logged_in(context):
-    """Return True if the user is logged in
+@register.simple_tag
+def ceda_cookie_enabled():
+    """Return True if the application can parse CEDA cookies
     
-    Checks the user's login cookie.
+    Checks whether or not the dj_security_middleware package is available.
     """
     
-    request = context['request']
-    return bool(get_userid_from_request(request))
+    return security_module_loaded
 
 
 @register.simple_tag(takes_context=True)
-def get_userid(context):
+def userid_from_cookie(context):
     """Return the user's ID if logged in
     
     Value is parsed from the user's login cookie.
@@ -40,7 +43,7 @@ def get_userid(context):
 
 
 @register.simple_tag(takes_context=True)
-def get_openid(context):
+def openid_from_cookie(context):
     """Return the user's OpenID if logged in
     
     Value is parsed from the user's login cookie.

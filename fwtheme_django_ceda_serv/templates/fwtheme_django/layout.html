@@ -55,11 +55,15 @@
     {% endblock navbar_dropdown %}
 
     {% block user_status %}
+    
+      {% ceda_cookie_enabled as show_user_status %}
+      {% if show_user_status %}
       <div class="dropdown">
-        {% if request.user.is_authenticated %}
+        {% userid_from_cookie as userid %}
+        {% if userid %}
         {# notification_dropdown #}
         <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          {{ request.user.username }} <span class="caret"></span>
+          {{ userid }} <span class="caret"></span>
         </a>
         <ul class="dropdown-menu px-2">
           <li class="nav-item">
@@ -96,6 +100,8 @@
         </ul>
         {% endif %}
       </div>
+      {% endif %}
+    
     {% endblock user_status %}
 
     {% block page_special %}
