@@ -48,6 +48,12 @@
             <li class="nav-item">
               <a class="nav-link" href="http://arrivals.ceda.ac.uk">Deposit</a>
             </li>
+            {% ceda_cookie_enabled as show_user_status %}
+            {% if not show_user_status %}
+            <li class="nav-item">
+              <a class="nav-link" href="https://services.ceda.ac.uk/cedasite/myceda/user">My Account</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="http://www.ceda.ac.uk/blog/">News</a>
             </li>
