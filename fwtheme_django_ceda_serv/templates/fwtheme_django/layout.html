@@ -28,8 +28,6 @@
     </a>
     {% endblock navbar_branding %}
     
-    {% block navigation %}
-    
     {% block navbar_dropdown %}
        <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">
@@ -60,6 +58,8 @@
           </ul>
         </div>
     {% endblock navbar_dropdown %}
+    
+    {% block user_status %}
     
     {% ceda_cookie_enabled as show_user_status %}
     {% if show_user_status %}
@@ -109,7 +109,7 @@
     
     {% endif %}
     
-    {% endblock navigation %}
+    {% endblock user_status %}
 
     {% block page_special %}
     {% endblock %}
