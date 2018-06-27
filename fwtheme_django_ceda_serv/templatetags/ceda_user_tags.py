@@ -56,7 +56,7 @@ def show_ceda_status(context):
     request = context['request']
     if _ceda_status_enabled():
         if _django_status_enabled():
-            if hasattr(request, 'authenticated_user'):
+            if hasattr(request, 'authenticated_user') or not request.user.is_authenticated:
                 return True
         else:
             return True
