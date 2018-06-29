@@ -14,8 +14,7 @@ from fwtheme_django_ceda_serv.default_settings import USE_DJANGO_USER_STATUS, US
 
 _security_module_loaded = True
 try:
-    from dj_security_middleware.middleware import LOGOUT, REGISTRATION,\
-        login_service, redirect_field_name
+    from dj_security_middleware.middleware import LOGOUT, login_service, redirect_field_name
 except ImportError:
     _security_module_loaded = False
 
@@ -100,9 +99,10 @@ def logout_url(context):
     """Return the application's logout URL"""
     
     request = context['request']
-    query_string = urlencode(
-        {LOGOUT: ''}
-    )
+    query_dict = request.GET.copy()
+    query_dict[LOGOUT] = ''
     
-    url = '{0}?{1}'.format(request.get_full_path(), query_string)
+    query_string = query_dict.urlencode()
+    url = '{0}?{1}'.format(request.path, query_string)
+    
     return url
