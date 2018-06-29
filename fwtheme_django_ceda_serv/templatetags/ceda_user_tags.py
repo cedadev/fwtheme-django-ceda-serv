@@ -96,19 +96,6 @@ def login_url(context):
 
 
 @register.simple_tag(takes_context=True)
-def registration_url(context):
-    """Return the application's logout URL"""
-    
-    request = context['request']
-    query_string = urlencode(
-        {REGISTRATION: ''}
-    )
-    
-    url = '{0}?{1}'.format(request.get_full_path(), query_string)
-    return url
-
-
-@register.simple_tag(takes_context=True)
 def logout_url(context):
     """Return the application's logout URL"""
     
