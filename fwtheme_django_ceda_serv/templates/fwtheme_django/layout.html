@@ -77,9 +77,9 @@
             {% if show_ceda_status %}
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i> My account</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
-            <li><a href="{% logout_url %}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
+            <li><a href="{% logout_url %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
             {% else %}
-            <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
             {% endif %}
           </ul>
         </div>
@@ -89,14 +89,14 @@
         {# Unauthenticated user #}
         <div class="dropdown">
           <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-fw fa-user-o"></i> Sign in <span class="caret"></span>
+              <i class="far fa-fw fa-user"></i> Sign in <span class="caret"></span>
           </a>
           <ul class="dropdown-menu px-2">
             {% if show_ceda_status %}
-            <li><a href="{% login_url %}"><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
-            <li><a href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-user fa-fw"></i> Register</a></li>
+            <li><a href="{% login_url %}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
+            <li><a href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i> Register</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}"><i class="fa fa-fw fa-user-o"></i> Sign in</a></li>
+            <li><a href="{% url 'login' %}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
             {% endif %}
           </ul>
         </div>
