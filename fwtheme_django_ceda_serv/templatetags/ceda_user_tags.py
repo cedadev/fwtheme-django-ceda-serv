@@ -8,13 +8,12 @@ __copyright__ = "Copyright 2018 UK Science and Technology Facilities Council"
 
 from django import template
 from django.conf import settings
-from django.utils.http import urlencode
 
 from fwtheme_django_ceda_serv.default_settings import USE_DJANGO_USER_STATUS, USE_CEDA_USER_STATUS
 
 _security_module_loaded = True
 try:
-    from dj_security_middleware.middleware import LOGOUT, login_service, redirect_field_name
+    import dj_security_middleware
 except ImportError:
     _security_module_loaded = False
 
@@ -81,28 +80,21 @@ def get_userid(context):
 
 @register.simple_tag(takes_context=True)
 def login_url(context):
-    """Return the application's login URL
-    
-    URL is determined by a setting.
+    """Return the application's login URL.
     """
     
-    request = context['request']
-    query_string = {redirect_field_name(): request.build_absolute_uri()}
-    query_string = urlencode(query_string)
-    
-    url = '{0}?{1}'.format(login_service(), query_string)
-    return url
+    if _security_module_loaded:
+        
+        from dj_security_middleware.utils.request import login_url as security_login
+        return security_login(context['request'])
 
 
 @register.simple_tag(takes_context=True)
 def logout_url(context):
-    """Return the application's logout URL"""
+    """Return the application's logout URL
+    """
     
-    request = context['request']
-    query_dict = request.GET.copy()
-    query_dict[LOGOUT] = ''
-    
-    query_string = query_dict.urlencode()
-    url = '{0}?{1}'.format(request.path, query_string)
-    
-    return url
+    if _security_module_loaded:
+        
+        from dj_security_middleware.utils.request import logout_url as security_logout
+        return security_logout(context['request'])
