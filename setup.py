@@ -6,18 +6,6 @@ from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-try:
-    import fwtheme_django_ceda_serv.__version__ as version
-except ImportError:
-    # If we get an import error, find the version string manually
-    version = "unknown"
-    with open(os.path.join(here, 'fwtheme_django_ceda_serv', '__init__.py')) as f:
-        for line in f:
-            match = re.search('__version__ *= *[\'"](?P<version>.+)[\'"]', line)
-            if match:
-                version = match.group('version')
-                break
-
 with open(os.path.join(here, 'README.md')) as f:
     README = f.read()
 
@@ -25,7 +13,7 @@ if __name__ == "__main__":
 
     setup(
         name = 'fwtheme-django-ceda-serv',
-        version = version,
+        version = '1.5.0',
         description = 'Framework-level theme for Django customised for CEDA Services app using bootstrap 4',
         long_description = README,
         classifiers = [
