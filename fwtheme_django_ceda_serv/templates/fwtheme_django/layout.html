@@ -63,9 +63,8 @@
     {% show_user_status as show_user_status %}
     {% if show_user_status %}
       
-      {% show_ceda_status as show_ceda_status %}
       {% get_userid as userid %}
-      
+
       {% if userid %}
       
         {# Authenticated user #}
@@ -74,13 +73,13 @@
             {{ userid }} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu px-2">
-            {% if show_ceda_status %}
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i> My account</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
+            <form action="{% url 'oidc_logout' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="logout">
+            </form>
             <li><a href="{% logout_url %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
-            {% else %}
-            <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
-            {% endif %}
           </ul>
         </div>
       
@@ -92,12 +91,8 @@
               <i class="far fa-fw fa-user"></i> Sign in <span class="caret"></span>
           </a>
           <ul class="dropdown-menu px-2">
-            {% if show_ceda_status %}
             <li><a href="{% login_url %}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i> Register</a></li>
-            {% else %}
-            <li><a href="{% url 'login' %}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
-            {% endif %}
           </ul>
         </div>
       
