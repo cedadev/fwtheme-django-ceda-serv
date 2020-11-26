@@ -9,27 +9,20 @@ __copyright__ = "Copyright 2018 UK Science and Technology Facilities Council"
 from django import template
 from django.conf import settings
 from django.shortcuts import reverse
+from django.urls.exceptions import NoReverseMatch
 
 
 LEGACY_MIDDLEWARE = "dj_security_middleware.middleware.DJSecurityMiddleware"
-DEFAULT_OIDC_BACKEND = "mozilla_django_oidc.auth.OIDCAuthenticationBackend"
 
-
-_use_oidc_login = settings.USE_OIDC_LOGIN \
-    if hasattr(settings, "USE_OIDC_LOGIN") else False
-if not _use_oidc_login:
-    _use_oidc_login = DEFAULT_OIDC_BACKEND in settings.AUTHENTICATION_BACKENDS
-
-_use_legacy_login = not _use_oidc_login \
-    and LEGACY_MIDDLEWARE in settings.MIDDLEWARE
-
-# Imports from legacy security module
+# Attempt imports from legacy security module
 try:
     from dj_security_middleware.utils.request import \
         login_url as legacy_login, logout_url as legacy_logout
 except ImportError:
-    _security_module_loaded = False
+    _legacy_login_loaded = False
 
+_use_legacy_login = _legacy_login_loaded \
+    and LEGACY_MIDDLEWARE in settings.MIDDLEWARE
 
 # Template tags
 register = template.Library()
@@ -40,8 +33,26 @@ def show_user_status():
     """ Return True if the application is configured to use
     the user_status block
     """
-    
-    return _use_oidc_login or _use_legacy_login
+
+    if _use_legacy_login:
+        return True
+
+    try:
+        reverse("login")
+        return True
+
+    except NoReverseMatch:
+        return False
+
+
+@register.simple_tag
+def logout_with_post():
+    """ Determines whether or not to use HTTP POST when logging out.
+    Default is True unless overridden by settings.LOGOUT_WITH_POST.
+    """
+
+    return settings.LOGOUT_WITH_POST \
+        if hasattr(settings, "LOGOUT_WITH_POST") else True
 
 
 @register.simple_tag(takes_context=True)
@@ -66,8 +77,6 @@ def login_url(context):
 
     if _use_legacy_login:
         return legacy_login(context['request'])
-    elif _use_oidc_login:
-        return reverse("oidc_authentication_init")
     else:
         return reverse("login")
 
@@ -79,7 +88,5 @@ def logout_url(context):
 
     if _use_legacy_login:
         return legacy_logout(context['request'])
-    elif _use_oidc_login:
-        return reverse("oidc_logout")
     else:
         return reverse("logout")

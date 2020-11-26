@@ -75,11 +75,14 @@
           <ul class="dropdown-menu px-2">
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i> My account</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
-            <form action="{% url 'oidc_logout' %}" method="post">
+            {% if logout_with_post %}
+            <form action="{% logout_url %}" method="post">
               {% csrf_token %}
-              <input type="submit" value="logout">
+              <button class="btn btn-link p-0" type="submit"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</button>
             </form>
+            {% else %}
             <li><a href="{% logout_url %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
+            {% endif %}
           </ul>
         </div>
       
