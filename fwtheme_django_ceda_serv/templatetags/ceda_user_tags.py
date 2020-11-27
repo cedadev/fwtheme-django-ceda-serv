@@ -12,6 +12,9 @@ from django.shortcuts import reverse
 from django.urls.exceptions import NoReverseMatch
 
 
+DEFAULT_LOGIN_URL_NAME = "login"
+DEFAULT_LOGOUT_URL_NAME = "logout"
+
 LEGACY_MIDDLEWARE = "dj_security_middleware.middleware.DJSecurityMiddleware"
 
 # Attempt imports from legacy security module
@@ -26,23 +29,6 @@ _use_legacy_login = _legacy_login_loaded \
 
 # Template tags
 register = template.Library()
-
-
-@register.simple_tag
-def show_user_status():
-    """ Return True if the application is configured to use
-    the user_status block
-    """
-
-    if _use_legacy_login:
-        return True
-
-    try:
-        reverse("login")
-        return True
-
-    except NoReverseMatch:
-        return False
 
 
 @register.simple_tag
@@ -76,9 +62,14 @@ def login_url(context):
     """
 
     if _use_legacy_login:
-        return legacy_login(context['request'])
-    else:
-        return reverse("login")
+        return legacy_login(context["request"])
+
+    name = settings.LOGIN_URL_NAME if hasattr(settings, "LOGIN_URL_NAME") \
+        else DEFAULT_LOGIN_URL_NAME
+    try:
+        return reverse(name)
+    except NoReverseMatch:
+        return ""
 
 
 @register.simple_tag(takes_context=True)
@@ -87,6 +78,11 @@ def logout_url(context):
     """
 
     if _use_legacy_login:
-        return legacy_logout(context['request'])
-    else:
-        return reverse("logout")
+        return legacy_logout(context["request"])
+
+    name = settings.LOGOUT_URL_NAME if hasattr(settings, "LOGOUT_URL_NAME") \
+        else DEFAULT_LOGOUT_URL_NAME
+    try:
+        return reverse(name)
+    except NoReverseMatch:
+        return ""

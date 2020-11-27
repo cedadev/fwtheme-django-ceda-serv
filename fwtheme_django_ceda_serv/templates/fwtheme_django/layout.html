@@ -1,7 +1,7 @@
 {% extends "fwtheme_django/layout.html" %}
 {% load static cookielaw_tags i18n %}
 {% load ceda_user_tags %}
-    
+
     {% block stylesheets %}
         <!-- Bootstrap Core
         CSS -->
@@ -21,7 +21,13 @@
         {% block stylesheets_extra %}{% endblock %}
 
     {% endblock stylesheets %}
- 
+
+{% block navbar_main %}
+{% login_url as login_url %}
+{% logout_url as logout_url %}
+{{ block.super }}
+{% endblock navbar_main %}
+
     {% block navbar_branding %}
     <a href="http://archive.ceda.ac.uk/" class="navbar-brand">
         <img src="https://artefacts.ceda.ac.uk/themes/orgtheme_ceda_serv/0.2/_assets/img/ceda_archive_logo_transp_white_3_h80.png" alt="CEDA logo">
@@ -46,8 +52,7 @@
             <li class="nav-item">
               <a class="nav-link" href="http://arrivals.ceda.ac.uk">Deposit</a>
             </li>
-            {% show_user_status as show_user_status %}
-            {% if not show_user_status %}
+            {% if login_url and logout_url %}
             <li class="nav-item">
               <a class="nav-link" href="https://services.ceda.ac.uk/cedasite/myceda/user">My Account</a>
             </li>
@@ -58,15 +63,12 @@
           </ul>
         </div>
     {% endblock navbar_dropdown %}
-    
-    {% block user_status %}
-    {% show_user_status as show_user_status %}
-    {% if show_user_status %}
-      
-      {% get_userid as userid %}
 
+    {% block user_status %}
+    {% if login_url and logout_url %}
+
+      {% get_userid as userid %}
       {% if userid %}
-      
         {# Authenticated user #}
         <div class="dropdown">
           <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -75,32 +77,30 @@
           <ul class="dropdown-menu px-2">
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i> My account</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
+            {% logout_with_post as logout_with_post %}
             {% if logout_with_post %}
-            <form action="{% logout_url %}" method="post">
+            <form action="{{ logout_url }}" method="post">
               {% csrf_token %}
               <button class="btn btn-link p-0" type="submit"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</button>
             </form>
             {% else %}
-            <li><a href="{% logout_url %}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
+            <li><a href="{{ logout_url }}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
             {% endif %}
           </ul>
         </div>
-      
       {% else %}
-      
         {# Unauthenticated user #}
         <div class="dropdown">
           <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <i class="far fa-fw fa-user"></i> Sign in <span class="caret"></span>
           </a>
           <ul class="dropdown-menu px-2">
-            <li><a href="{% login_url %}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
+            <li><a href="{{ login_url }}"><i class="fa fa-fw fa-sign-in-alt"></i> Sign in</a></li>
             <li><a href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i> Register</a></li>
           </ul>
         </div>
-      
       {% endif %}
-    
+
     {% endif %}
     {% endblock user_status %}
 
