@@ -33,7 +33,7 @@ There are two ways to enable the CEDA user status menu in the banner:
    ```
 
 2. If using standard Django authentication (e.g. with Django admin users or a custom authentication backend),
-   you simply need to have reversable login and logout URL included in your `urls.py`:
+   you simply need to have reversable login and logout URLs included in your `urls.py`:
 
    ```python
    urlpatterns = [
@@ -43,7 +43,7 @@ There are two ways to enable the CEDA user status menu in the banner:
    ```
 
    If you wish to use names other than "login" and "logout", you can declare them in settings. For example, if you are using
-   the recommended [OIDC authentication backend for CEDA accounts](https://github.com/cedadev/django-oidc-extras), you would set your URLS like this:
+   the recommended [OIDC authentication backend for CEDA accounts](https://github.com/cedadev/django-oidc-extras), you would set your URLs like this:
 
    ```python
    LOGIN_URL_NAME = "oidc_authentication_init"
