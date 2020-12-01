@@ -2,7 +2,7 @@
 
 Django app providing Django framework theme for Django-based web apps, themed for CEDA Services. Requires lower-level fwtheme-django.
 
-## Installation
+## Installation
 
 `fwtheme-django-ceda-serv` can be installed directly from Github using pip:
 
@@ -23,7 +23,7 @@ In `settings.py`, this app should have an entry in INSTALLED_APPS *before* fwthe
 
 There are two ways to enable the CEDA user status menu in the banner:
 
-1. If using cookie based CEDA authentication, you must install the DJ Security Middleware package and include the middleware in your settings:
+1. If using cookie based CEDA authentication, you must install the [DJ Security Middleware](https://github.com/cedadev/dj-security-middleware) package and include the middleware in your settings:
 
    ```python
    MIDDLEWARE = [
