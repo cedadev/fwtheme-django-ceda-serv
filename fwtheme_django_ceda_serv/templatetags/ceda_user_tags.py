@@ -21,6 +21,7 @@ LEGACY_MIDDLEWARE = "dj_security_middleware.middleware.DJSecurityMiddleware"
 try:
     from dj_security_middleware.utils.request import \
         login_url as legacy_login, logout_url as legacy_logout
+    _legacy_login_loaded = True
 except ImportError:
     _legacy_login_loaded = False
 
