@@ -60,6 +60,7 @@ def get_userid(context):
 @register.simple_tag(takes_context=True)
 def login_url(context):
     """ Return the application's login URL.
+    Change the default by setting LOGIN_URL_NAME.
     """
 
     if _use_legacy_login:
@@ -75,7 +76,8 @@ def login_url(context):
 
 @register.simple_tag(takes_context=True)
 def logout_url(context):
-    """ Return the application's logout URL
+    """ Return the application's logout URL.
+    Change the default by setting LOGOUT_URL_NAME.
     """
 
     if _use_legacy_login:
