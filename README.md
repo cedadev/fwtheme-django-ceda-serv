@@ -38,7 +38,7 @@ There are two ways to enable the CEDA user status menu in the banner:
    ```python
    urlpatterns = [
        path("/login", LoginView.as_view(), name="login"),
-       path("/logout", LoginView.as_view(), name="logout"),
+       path("/logout", LogoutView.as_view(), name="logout"),
    ]
    ```
 
