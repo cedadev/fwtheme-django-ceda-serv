@@ -1,30 +1,25 @@
 {% extends "fwtheme_django/layout.html" %}
-
 {% load static %}
 
-{% block head_title %}British Oceanography Data Centre{% endblock %}
+{% block head_title %}Data - UKERC Energy Data Centre{% endblock %}
 {% block extra_meta %}
-    <meta name="description" content="Web based directory browser for the British Oceanographic Data Centre.
+    <meta name="description" content="Web based directory browser for the UKERC Energy Data Centre.
     Provides download links and access to the relevant CEDA Catalogue record.">
     <meta name="keywords" content="climate data, netcdf, satellite, earth observation, observations, CEDA">
 {% endblock %}
 {% block page_title %}
 {% endblock %}
 
-{% block head_js_extra %}
-    <script src="//artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/jquery/dist/jquery.min.js"></script>
-{% endblock head_js_extra %}
-
 {% block stylesheets_extra %}
-    <link rel="shortcut icon" href="{% 'common/img/favicon.ico' %}"/>
-    <link rel="stylesheet" href="{% 'common/css/bodc.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'common/css/edc.css' %}"/>
 {% endblock %}
 
 {% block navbar_main %}
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
-            <a href="https://www.bodc.ac.uk/" class="navbar-brand">
-                <img src="{% 'common/img/bodc.png' %}"  style="height:60%; width: 60%" alt="BODC logo">
+            <a href="https://eds.ukri.org/" class="navbar-brand">
+                <img src="{% static 'common/img/edc.gif' %}" style="height:100%; width: 100%"  alt="UKERC EDC logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,19 +27,22 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.bodc.ac.uk/data/">Search the Data</a>
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.bodc.ac.uk/submit_data/">Submit your Data</a>
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/DC/index.html">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.bodc.ac.uk/projects/">Projects</a>
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/cgi-bin/era002.pl">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.bodc.ac.uk/resources/">Resources</a>
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/UCAT/cgi-bin/ucat_query.pl">Publications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.bodc.ac.uk/about/#">About</a>
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/visualizations.html">Visualisations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://ukerc.rl.ac.uk/AboutPages/about-overview.html">About</a>
                     </li>
                 </ul>
             </div>
