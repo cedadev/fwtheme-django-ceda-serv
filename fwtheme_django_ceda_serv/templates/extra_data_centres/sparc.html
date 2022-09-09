@@ -16,14 +16,14 @@
 
 {% block stylesheets_extra %}
     <link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}"/>
-    <link rel="stylesheet" href="{% static 'common/css/eds.css' %}"/>
+    <link rel="stylesheet" href="{% 'extra_data_centres/css/eds.css' %}"/>
 {% endblock %}
 
 {% block navbar_main %}
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
             <a href="https://www.sparc-climate.org/data-centre/" class="navbar-brand">
-                <img src="{% static 'common/img/sparc.jpg' %}" style="height:100%; width:100%"alt="NGDC logo">
+                <img src="{% 'extra_data_centres/img/sparc.jpg' %}" style="height:100%; width:100%"alt="NGDC logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
