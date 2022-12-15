@@ -1,22 +1,25 @@
 {% extends "fwtheme_django/layout.html" %}
+{% load static %}
 
-{% block head_title %}NERC Environmental Data Service{% endblock %}
-
+{% block head_title %}Data - UK Solar System Data Centre{% endblock %}
+{% block extra_meta %}
+    <meta name="description" content="Web based directory browser for the UK Solar System Data Centre.
+    Provides download links and access to the relevant CEDA Catalogue record.">
+    <meta name="keywords" content="climate data, netcdf, satellite, earth observation, observations, CEDA">
+{% endblock %}
 {% block page_title %}
 {% endblock %}
 
-{% load static %}
-
 {% block stylesheets_extra %}
-    <link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}"/>
-    <link rel="stylesheet" href="{% static 'extra_data_centres/css/eds.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'browser/img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'extra_data_centres/css/ssdc.css' %}"/>
 {% endblock %}
 
 {% block navbar_main %}
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
-            <a href="https://eds.ukri.org/" class="navbar-brand">
-                <img src="{% static 'extra_data_centres/img/eds.svg' %}" style="height:100%; width: 100%"  alt="EDS logo">
+            <a href="https://www.ukssdc.ac.uk/" class="navbar-brand">
+                <img src="{% static 'extra_data_centres/img/ssdc.png' %}" style="height:80%; width: 80%"  alt="UKSSDC logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,22 +27,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/about-us">About</a>
+                        <a class="nav-link" href="https://www.ukssdc.ac.uk/data_menu.html">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/services-and-tools">Services and Tools</a>
+                        <a class="nav-link" href="https://www.ukssdc.ac.uk/contact.html">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/our-impacts">Our Impacts</a>
+                        <a class="nav-link" href="https://www.ukssdc.ac.uk/cgi-bin/wdcc1/userreg.pl">Register to Retrieve Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/events">Events</a>
+                        <a class="nav-link" href="https://www.ukssdc.ac.uk/azindex/azindex.html">Site Index</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/news">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://eds.ukri.org/contact">Contact</a>
+                        <a class="nav-link" href="https://www.ukssdc.ac.uk/wdcc1/news/news.html">News</a>
                     </li>
                 </ul>
             </div>
