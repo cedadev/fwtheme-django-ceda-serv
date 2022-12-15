@@ -29,8 +29,5 @@ if __name__ == "__main__":
         packages = find_packages(),
         include_package_data = True,
         zip_safe = False,
-        install_requires = [ ],
-        extras_require = {
-            'user_status': ['dj_security_middleware']
-        },
+        install_requires = [],
     )
