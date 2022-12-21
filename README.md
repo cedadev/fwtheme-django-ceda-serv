@@ -59,3 +59,6 @@ LOGOUT_WITH_POST = False
 ```
 
 This setting is `True` by default.
+
+## Extra Data Centres
+CSS/Img static files can be found in `fwtheme_django_ceda_serv/static/extra_data_centres` and the html files for each data centre are in `templates/extra_data_centres`. Context processor for data centres and global datacentre dicts have now been added in `context_processors.py` and `default_settings.py` respectively.
