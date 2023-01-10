@@ -55,6 +55,9 @@ def get_userid(context):
 
     elif request.user.is_authenticated:
         return request.user.username
+    
+    else:
+        return None
 
 
 @register.simple_tag(takes_context=True)
@@ -62,15 +65,17 @@ def login_url(context):
     """ Return the application's login URL.
     Change the default by setting LOGIN_URL_NAME.
     """
-
     if _use_legacy_login:
         return legacy_login(context["request"])
 
+    
     name = settings.LOGIN_URL_NAME if hasattr(settings, "LOGIN_URL_NAME") \
         else DEFAULT_LOGIN_URL_NAME
+    
     try:
         return reverse(name)
     except NoReverseMatch:
+        print('DEBUG: No reverse for',name)
         return ""
 
 
@@ -88,4 +93,5 @@ def logout_url(context):
     try:
         return reverse(name)
     except NoReverseMatch:
+        print('DEBUG: No reverse for',name) ## Reverse needs fixing for oidc_...
         return ""
