@@ -15,7 +15,8 @@ DATACENTRES = {
     'eidc': 'Environmental Information Data Centre',
     'ngdc': 'British Geological Survey',
     'ssdc': 'UK Solar System Data Centre',
-    'edc' : 'UK Energy Research Centre'
+    'edc' : 'UK Energy Research Centre',
+    'sparc': 'Stratosphere-troposphere Processes And their Role in Climate'
 }
 # DATACENTRE THEMES
 DC_TEMPLATES = {
@@ -27,7 +28,8 @@ DC_TEMPLATES = {
     'eidc': 'eidc.html',
     'ngdc': 'ngdc.html',
     'ssdc': 'ssdc.html',
-    'edc': 'edc.html'
+    'edc': 'edc.html',
+    'sparc': 'sparc.html'
 }
 
 # Enable the user_status block for Django-authenticated users
