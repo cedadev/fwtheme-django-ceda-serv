@@ -28,7 +28,7 @@ a.navbar-brand {
 */
 
 .navbar.bg-primary{
-    background: #fff !important;
+    background: #2e2d62 !important;
 }
 
 .navbar.fixed-top {
@@ -45,7 +45,7 @@ a.navbar-brand {
 
 @media(min-width:768px) {
     body {
-        padding-top: 300px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+        padding-top: 120px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     }
 
     .navbar-fixed-top .nav .navbar-brand {
@@ -54,7 +54,7 @@ a.navbar-brand {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-     color: #000;
+     color: #fff;
 }
 
 /* Text */
