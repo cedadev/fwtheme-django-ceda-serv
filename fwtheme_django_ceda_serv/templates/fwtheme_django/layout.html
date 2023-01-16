@@ -82,6 +82,7 @@
             <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
             {% logout_with_post as logout_with_post %}
             {% if logout_with_post %}
+            <!-- The text colour doesn't change dynamically :( -->
             <form action="{{ logout_url }}" method="post">
               {% csrf_token %}
               <button class="btn btn-link p-0" type="submit"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</button>

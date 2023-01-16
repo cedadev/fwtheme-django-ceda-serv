@@ -8,7 +8,7 @@ __copyright__ = "Copyright 2018 UK Science and Technology Facilities Council"
 
 from django import template
 from django.conf import settings
-from django.shortcuts import reverse
+from django.urls import reverse, resolve
 from django.urls.exceptions import NoReverseMatch
 
 
@@ -73,7 +73,8 @@ def login_url(context):
         else DEFAULT_LOGIN_URL_NAME
     
     try:
-        return reverse(name)
+        auth_view = reverse(name)
+        return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
         print('DEBUG: No reverse for',name)
         return ""
@@ -91,7 +92,9 @@ def logout_url(context):
     name = settings.LOGOUT_URL_NAME if hasattr(settings, "LOGOUT_URL_NAME") \
         else DEFAULT_LOGOUT_URL_NAME
     try:
-        return reverse(name)
+        auth_view = reverse(name)
+        # next - not passed to logout system - bug
+        return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
         print('DEBUG: No reverse for',name) ## Reverse needs fixing for oidc_...
         return ""
