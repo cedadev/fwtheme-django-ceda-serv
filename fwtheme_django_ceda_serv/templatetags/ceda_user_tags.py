@@ -49,12 +49,14 @@ def get_userid(context):
     """
 
     request = context["request"]
-
-    if request.user.is_authenticated:
-        return request.user.username
-    
-    else:
-        return None
+    try:
+        if request.user.is_authenticated:
+            return request.user.username
+        
+        else:
+            return 'Not authenticated' #None
+    except:
+        return 'No user' #None
 
 
 @register.simple_tag(takes_context=True)
