@@ -49,16 +49,7 @@ def get_userid(context):
     """
 
     request = context["request"]
-    try:
-        return request.user.is_authenticated
-    except:
-        try:
-            x = request.user
-            return 'GenericUser'
-        except:
-            return 'No user'
 
-    '''
     if _use_legacy_login and hasattr(request, "authenticated_user"):
         return request.authenticated_user.get("userid")
 
@@ -67,7 +58,6 @@ def get_userid(context):
     
     else:
         return None
-    '''
 
 
 @register.simple_tag(takes_context=True)
