@@ -49,14 +49,15 @@ def get_userid(context):
     """
 
     request = context["request"]
-    try:
-        if request.user.is_authenticated:
-            return request.user.username
-        
-        else:
-            return 'Not authenticated' #None
-    except:
-        return 'No user' #None
+
+    if _use_legacy_login and hasattr(request, "authenticated_user"):
+        return request.authenticated_user.get("userid")
+
+    elif request.user.is_authenticated:
+        return request.user.username
+    
+    else:
+        return None
 
 
 @register.simple_tag(takes_context=True)
