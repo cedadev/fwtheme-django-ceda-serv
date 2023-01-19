@@ -138,6 +138,12 @@ btn-success {
   border-color: #3498DB;
 }
 
+.btn-link {
+  font-weight: 400;
+  color: #333333;
+  text-decoration: none;
+}
+
 .btn-info:hover {
   color: #fff;
   background-color: #2384c6;

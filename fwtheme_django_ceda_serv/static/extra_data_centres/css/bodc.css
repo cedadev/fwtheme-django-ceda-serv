@@ -131,6 +131,12 @@ a {
     border-color: #00628d;
 }
 
+.btn-link {
+    font-weight: 400;
+    color: #2fd2ce;
+    text-decoration: none;
+}
+
 .btn-light {
     color: rgb(0,48,66);
     background-color: #ecf0f1;
