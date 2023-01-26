@@ -27,7 +27,7 @@ body > .container {
 */
   
 .navbar.bg-primary{
-    background: #002e40 !important;
+    background: #001F33 !important; /* #001F33 #002e40 */
 }
 
 .navbar.fixed-top {
@@ -58,37 +58,37 @@ p {
 
 /* buttons */
 .btn-primary {
-    background-color: #002e40;
-    border-color: #002e40
+    background-color: #001F33;
+    border-color: #001F33
 }
 
 .btn-primary:hover {
-    color: #002e40;
+    color: #001F33;
     background-color: #fff;
-    border-color: #002e40;
+    border-color: #001F33;
 }
 
 .btn-outline-primary {
-  color: #002e40;
-  border-color: #002e40;
+  color: #001F33;
+  border-color: #001F33;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #002e40;
-  border-color: #002e40;
+  background-color: #001F33;
+  border-color: #001F33;
 }
 
 .btn-secondary {
     color: #fff;
-    background-color: #002e40;
-    border-color: #002e40;
+    background-color: #001F33;
+    border-color: #001F33;
   }
 
 .btn-secondary:hover {
-    color: #002e40;
+    color: #001F33;
     background-color: #fff;
-    border-color: #002e40;
+    border-color: #001F33;
 }
 
 .btn-success {
@@ -167,5 +167,5 @@ p {
   content: "";
   position: absolute;
   z-index:-1;
-  background: #002e40;
+  background: ##001F33;
 }
