@@ -16,18 +16,25 @@
 {% endblock %}
 
 {% block navbar_branding %}
-<a href="https://www.bas.ac.uk/data/our-data/" class="navbar-brand" style="max-width: 30%;">
+<a href="https://www.bas.ac.uk/" class="navbar-brand" style="max-width: 30%;">
     <img src="{% static 'extra_data_centres/img/pdc.png' %}" style="max-width:100%" alt="BAS logo">
 </a>
 {% endblock navbar_branding %}
 
 {% block navbar_options %}
 <li class="nav-item">
-    <a class="nav-link" href="https://www.bas.ac.uk/about/about-bas/">BAS</a>
+    <a class="nav-link" href="https://www.bas.ac.uk/about/about-bas/">About BAS</a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="https://www.bas.ac.uk/data/uk-pdc/">UK-PDC</a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://data.bas.ac.uk/">PDC Catalogue</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://data-search.nerc.ac.uk/">NERC Catalogue</a>
+</li>
+
 {% endblock navbar_options %}
 
 {% block footer %}
