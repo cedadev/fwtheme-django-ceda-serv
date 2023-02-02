@@ -50,14 +50,17 @@ def get_userid(context):
 
     request = context["request"]
 
+    ## Authenticated user cookie requires .ceda.ac.uk domain
+    ## Local versions will not allow login
+
     if _use_legacy_login and hasattr(request, "authenticated_user"):
         return request.authenticated_user.get("userid")
-
-    elif request.user.is_authenticated:
-        return request.user.username
-    
+    elif hasattr(request, "user"):
+        if request.user.is_authenticated:
+            return request.user.username
     else:
-        return None
+        if '0.0' in request.build_absolute_uri():
+            return 'local'
 
 
 @register.simple_tag(takes_context=True)
@@ -76,8 +79,9 @@ def login_url(context):
         auth_view = reverse(name)
         return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
-        print('DEBUG: No reverse for',name)
-        return ""
+        # No legacy login and no defined OIDC Login
+        # Hence use default login url
+        return "https://auth.ceda.ac.uk/account/signin/?r=" + context['request'].build_absolute_uri() # Need local website address fetch
 
 
 @register.simple_tag(takes_context=True)
@@ -96,5 +100,6 @@ def logout_url(context):
         # next - not passed to logout system - bug
         return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
-        print('DEBUG: No reverse for',name) ## Reverse needs fixing for oidc_...
-        return ""
+        # No legacy logout and no defined OIDC Logout
+        # Hence use default logout url
+        return "/?logout=" # Works in live versions
