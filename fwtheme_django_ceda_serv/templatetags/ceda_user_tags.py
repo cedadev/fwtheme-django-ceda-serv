@@ -53,14 +53,20 @@ def get_userid(context):
     ## Authenticated user cookie requires .ceda.ac.uk domain
     ## Local versions will not allow login
 
+    try:
+        print(request.authenticated_user)
+    except:
+        try:
+            print(request.user)
+        except:
+            print('No user')
+    
+    # Legacy login or OIDC login
     if _use_legacy_login and hasattr(request, "authenticated_user"):
         return request.authenticated_user.get("userid")
     elif hasattr(request, "user"):
         if request.user.is_authenticated:
             return request.user.username
-    else:
-        if '0.0' in request.build_absolute_uri():
-            return 'local'
 
 
 @register.simple_tag(takes_context=True)
