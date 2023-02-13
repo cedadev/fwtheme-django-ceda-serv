@@ -52,21 +52,21 @@ def get_userid(context):
 
     ## Authenticated user cookie requires .ceda.ac.uk domain
     ## Local versions will not allow login
-
-    try:
-        print(request.authenticated_user)
-    except:
-        try:
-            print(request.user)
-        except:
-            print('No user')
     
     # Legacy login or OIDC login
     if _use_legacy_login and hasattr(request, "authenticated_user"):
+        if settings.DEBUG:
+            print('auth_user')
         return request.authenticated_user.get("userid")
     elif hasattr(request, "user"):
+        if settings.DEBUG:
+            print('user')
         if request.user.is_authenticated:
             return request.user.username
+    else:
+        if settings.DEBUG:
+            print('No user')
+        return None
 
 
 @register.simple_tag(takes_context=True)
@@ -86,8 +86,7 @@ def login_url(context):
         return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
         # No legacy login and no defined OIDC Login
-        # Hence use default login url
-        return "https://auth.ceda.ac.uk/account/signin/?r=" + context['request'].build_absolute_uri() # Need local website address fetch
+        return None
 
 
 @register.simple_tag(takes_context=True)
