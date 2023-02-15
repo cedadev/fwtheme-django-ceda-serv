@@ -74,15 +74,25 @@ def login_url(context):
     """ Return the application's login URL.
     Change the default by setting LOGIN_URL_NAME.
     """
+    url = DEFAULT_LOGIN_URL_NAME
+
+    # Handle Legacy
     if _use_legacy_login:
         return legacy_login(context["request"])
 
-    
-    name = settings.LOGIN_URL_NAME if hasattr(settings, "LOGIN_URL_NAME") \
-        else DEFAULT_LOGIN_URL_NAME
+    # Handle no login
+    if hasattr(settings,"DISABLE_LOGIN"):
+        if settings.DISABLE_LOGIN:
+            return None
+
+    # Handle non-default login url
+    if hasattr(settings, "LOGIN_URL_NAME"):
+        url = settings.LOGIN_URL_NAME
+    else:
+        url = DEFAULT_LOGIN_URL_NAME
     
     try:
-        auth_view = reverse(name)
+        auth_view = reverse(url)
         return auth_view + '?next=' + context['request'].path
     except NoReverseMatch:
         # No legacy login and no defined OIDC Login
