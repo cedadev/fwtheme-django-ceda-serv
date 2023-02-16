@@ -76,14 +76,14 @@ def login_url(context):
     """
     url = DEFAULT_LOGIN_URL_NAME
 
-    # Handle Legacy
-    if _use_legacy_login:
-        return legacy_login(context["request"])
-
     # Handle no login
     if hasattr(settings,"DISABLE_LOGIN"):
         if settings.DISABLE_LOGIN:
             return None
+
+    # Handle Legacy
+    if _use_legacy_login:
+        return legacy_login(context["request"])
 
     # Handle non-default login url
     if hasattr(settings, "LOGIN_URL_NAME"):
