@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     setup(
         name = 'fwtheme-django-ceda-serv',
-        version = '1.5.3',
+        version = '1.6.0',
         description = 'Framework-level theme for Django customised for CEDA Services app using bootstrap 4',
         long_description = README,
         classifiers = [
