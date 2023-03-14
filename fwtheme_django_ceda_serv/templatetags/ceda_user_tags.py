@@ -118,7 +118,10 @@ def logout_url(context):
     try:
         auth_view = reverse(name)
         # next - not passed to logout system - bug
-        return auth_view + '?next=' + context['request'].path
+        if hasattr(context,'request'):
+            return auth_view + '?next=' + context['request'].path
+        else:
+            return auth_view
     except NoReverseMatch:
         # No legacy logout and no defined OIDC Logout
         # Hence use default logout url
