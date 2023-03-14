@@ -93,7 +93,10 @@ def login_url(context):
     
     try:
         auth_view = reverse(url)
-        return auth_view + '?next=' + context['request'].path
+        if hasattr(context,'request'):
+            return auth_view + '?next=' + context['request'].path
+        else:
+            return auth_view
     except NoReverseMatch:
         # No legacy login and no defined OIDC Login
         return None
