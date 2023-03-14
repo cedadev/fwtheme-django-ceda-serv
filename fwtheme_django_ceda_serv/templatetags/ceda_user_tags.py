@@ -97,6 +97,8 @@ def login_url(context):
     except NoReverseMatch:
         # No legacy login and no defined OIDC Login
         return None
+    except:
+        return auth_view
 
 
 @register.simple_tag(takes_context=True)
