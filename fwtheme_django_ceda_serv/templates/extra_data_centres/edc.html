@@ -10,7 +10,10 @@
 {% block page_title %}
 {% endblock %}
 
-{% include "eds_tagman.html" %}
+{% block head_js %}
+    <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
+    <!-- Google Tag Manager Override -->
+{% endblock head_js %}
 
 {% block stylesheets_extra %}
     <link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}"/>
