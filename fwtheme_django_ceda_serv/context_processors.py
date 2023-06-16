@@ -1,6 +1,6 @@
 from .default_settings import DC_TEMPLATES, DATACENTRES, BEACONS
 
-def data_centre(request, arrivals=False):
+def data_centre(request):
     """
     Determine which data centre template is extended
     by browse.html
@@ -11,16 +11,32 @@ def data_centre(request, arrivals=False):
     # fwtheme_django_ceda_serv version 1.5.3
 
     # Dynamic Data Centre processing
-    beacon = BEACONS['CEDA']
     dc = request.path.split('/')[1] # /ceda/ -> ['','ceda','...']
     if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
-        data_centre_template = location + DC_TEMPLATES[dc]
-        beacon = BEACONS['EDS']
-    if arrivals:
-        beacon = BEACONS['Arrivals']    
+        data_centre_template = location + DC_TEMPLATES[dc]    
     context = {
         "data_centre_template": data_centre_template,
         "data_centre": dc,
+    }
+    return context
+
+def beacon(request, arrivals=False):
+    # Determine which beacon to use
+    beacon = BEACONS['CEDA'] # Default
+    if arrivals:
+        beacon = BEACONS['Arrivals']
+    else:
+        founddc = False
+        index = 0
+        parts = request.path.split('/')
+        while not founddc and index < len(parts):
+            dc = parts[index]
+            if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
+                beacon = BEACONS['EDS']
+                founddc = True    
+            index += 1
+    context = {
         "beacon":beacon,
     }
     return context
+
