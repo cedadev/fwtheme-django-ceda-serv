@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     setup(
         name = 'fwtheme-django-ceda-serv',
-        version = '1.5.0',
+        version = '1.6.0',
         description = 'Framework-level theme for Django customised for CEDA Services app using bootstrap 4',
         long_description = README,
         classifiers = [
@@ -29,8 +29,5 @@ if __name__ == "__main__":
         packages = find_packages(),
         include_package_data = True,
         zip_safe = False,
-        install_requires = [ ],
-        extras_require = {
-            'user_status': ['dj_security_middleware']
-        },
+        install_requires = [],
     )

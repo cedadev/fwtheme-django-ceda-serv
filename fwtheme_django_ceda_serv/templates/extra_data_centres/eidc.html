@@ -1,0 +1,81 @@
+{% extends "fwtheme_django/layout.html" %}
+{% load static %}
+
+{% block head_title %}Data - Environmental Information Data Centre{% endblock %}
+{% block extra_meta %}
+    <meta name="description" content="Web based directory browser for the Environmental Information Data Centre.
+    Provides download links and access to the relevant CEDA Catalogue record.">
+    <meta name="keywords" content="climate data, netcdf, satellite, earth observation, observations, CEDA">
+{% endblock %}
+{% block page_title %}
+{% endblock %}
+
+{% block head_js %}
+    <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','G-TJ328YG76L');</script>
+    <!-- End Google Tag Manager -->
+{% endblock head_js %}
+
+{% block head_js_extra %}
+    <script src="//artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/jquery/dist/jquery.min.js"></script>
+{% endblock head_js_extra %}
+
+{% block stylesheets_extra %}
+    <link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'extra_data_centres/css/eidc.css' %}"/>
+{% endblock %}
+
+{% block navbar_branding %}
+<a href="https://eidc.ac.uk/" class="navbar-brand" style="max-width: 30%;">
+    <img src="{% static 'extra_data_centres/img/eidc.png' %}" style="max-width: 100%;" alt="EIDC logo">
+</a>
+{% endblock navbar_branding %}
+
+{% block navbar_options %}
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/finddata">Find Data</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/deposit">Deposit Data</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/support">Support</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/about">About</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/contact">Contact</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://eidc.ac.uk/help">Help</a>
+</li>
+{% endblock navbar_options %}
+
+{% block footer %}
+<footer>
+    <div class="container">
+        <div class="row d-flex justify-content-around border border-light border-bottom-0 border-left-0 border-right-0 pt-5 pb-2 mt-5">
+            <div class="col col-md-4 text-center ">
+            </div>
+            <div class="col-md-4">
+                <p class="text-center small">
+                    Copyright © 2018 <a href="http://www.stfc.ac.uk">STFC</a>
+                    All Rights Reserved <br>
+                    <a href="http://www.ceda.ac.uk/accessibility" target="_blank">Accessibility</a> |
+                    <a href="http://www.ceda.ac.uk/disclaimer" target="_blank">Disclaimer</a> |
+                    <a href="http://www.ceda.ac.uk/privacy-and-cookies/" target="_blank">Privacy and Cookies</a><br/>
+                    <a href="http://www.ceda.ac.uk" target="_blank">CEDA</a>
+                </p>
+            </div>
+            <div class="col col-md-4 text-center">
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock footer %}
