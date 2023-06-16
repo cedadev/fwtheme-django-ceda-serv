@@ -16,7 +16,6 @@ def data_centre(request, arrivals=False):
     if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
         data_centre_template = location + DC_TEMPLATES[dc]
         beacon = BEACONS['EDS']
-    print('Req',request)
     if arrivals:
         beacon = BEACONS['Arrivals']    
     context = {
