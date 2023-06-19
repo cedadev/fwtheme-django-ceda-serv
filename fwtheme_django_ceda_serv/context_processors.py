@@ -20,23 +20,22 @@ def data_centre(request):
     }
     return context
 
-def beacon(request, arrivals=False):
+def beacon(request):
     # Determine which beacon to use
     beacon = BEACONS['CEDA'] # Default
-    if arrivals:
-        beacon = BEACONS['Arrivals']
-    else:
-        founddc = False
-        index = 0
-        parts = request.path.split('/')
-        while not founddc and index < len(parts):
-            dc = parts[index]
-            if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
-                beacon = BEACONS['EDS']
-                founddc = True    
-            index += 1
+    founddc = False
+    index = 0
+    parts = request.path.split('/')
+    while not founddc and index < len(parts):
+        dc = parts[index]
+        if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
+            beacon = BEACONS['EDS']
+            founddc = True    
+        index += 1
     context = {
         "beacon":beacon,
     }
     return context
 
+def arrival_beacon(request):
+    return {"beacon":BEACONS['Arrivals']}
