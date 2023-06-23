@@ -38,4 +38,9 @@ def beacon(request):
     return context
 
 def arrival_beacon(request):
-    return {"beacon":BEACONS['Arrivals']}
+    dc = request.path.split('/')[1] # /ceda/ -> ['','ceda','...']
+    if dc not in ['ceda','badc','neodc'] and dc in DATACENTRES:
+        return {"beacon":BEACONS['EDS']}
+    else:
+        return {"beacon":BEACONS['Arrivals']}
+
