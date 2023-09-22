@@ -109,7 +109,9 @@ def logout_url(context):
     """ Return the application's logout URL.
     Change the default by setting LOGOUT_URL_NAME.
     """
-
+    if hasattr(settings, "DISABLE_LOGIN"):
+        if settings.DISABLE_LOGIN:
+            return None
     if _use_legacy_login:
         return legacy_logout(context["request"])
 
