@@ -48,7 +48,10 @@ def get_userid(context):
     Return the user's ID if logged in
     """
 
-    request = context["request"]
+    if "request" in context:
+        request = context["request"]
+    else:
+        return None
 
     ## Authenticated user cookie requires .ceda.ac.uk domain
     ## Local versions will not allow login
@@ -83,7 +86,10 @@ def login_url(context):
 
     # Handle Legacy
     if _use_legacy_login:
-        return legacy_login(context["request"])
+        if "request" in context:
+            return legacy_login(context["request"])
+        else:
+            return None
 
     # Handle non-default login url
     if hasattr(settings, "LOGIN_URL_NAME"):
@@ -111,7 +117,10 @@ def logout_url(context):
     """
 
     if _use_legacy_login:
-        return legacy_logout(context["request"])
+        if "request" in context:
+            return legacy_logout(context["request"])
+        else:
+            return None
 
     name = settings.LOGOUT_URL_NAME if hasattr(settings, "LOGOUT_URL_NAME") \
         else DEFAULT_LOGOUT_URL_NAME
