@@ -1,11 +1,11 @@
 {% extends "fwtheme_django/layout.html" %}
-{% load static cookielaw_tags i18n %}
+{% load static cookielaw_tags i18n artefacts %}
 {% load ceda_user_tags %}
 
     {% block stylesheets %}
         <!-- Bootstrap Core
         CSS -->
-        <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme_ceda_serv/0.2/4/flatly/bootstrap.css" media="screen">
+        <link rel="stylesheet" href="{% artefact "theme/css/main.css" %}" media="screen">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme_ceda_serv/0.2/_assets/css/custom.min.css">
         <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme_ceda_serv/0.2/_assets/css/org-custom.css">
@@ -32,7 +32,7 @@
 
     {% block navbar_branding %}
     <a href="https://archive.ceda.ac.uk/" class="navbar-brand">
-        <img src="https://artefacts.ceda.ac.uk/themes/orgtheme_ceda_serv/0.2/_assets/img/ceda_archive_logo_transp_white_3_h80.png" alt="CEDA logo">
+        <img src="{% artefact "assets/img/ceda_archive_logo_transp_white_3_h80.png" %}" alt="CEDA logo">
     </a>
     {% endblock navbar_branding %}
     
@@ -74,40 +74,38 @@
     {% block user_status %}
     {% if login_url and logout_url %}
 
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item dropdown">
       {% get_userid as userid %}
       {% if userid %}
         {# Authenticated user #}
-        <div class="dropdown">
-          <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            {{ userid }} <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu px-2">
-            <li><a href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i> My account</a></li>
-            <li><a href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
-            {% logout_with_post as logout_with_post %}
-            {% if logout_with_post %}
-            <!-- The text colour doesn't change dynamically :( -->
-            <form action="{{ logout_url }}" method="post">
-              {% csrf_token %}
-              <button class="btn btn-link p-0" type="submit"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</button>
-            </form>
-            {% else %}
-            <li><a href="{{ logout_url }}"><i class="fa fa-sign-out-alt fa-fw"></i> Sign out</a></li>
-            {% endif %}
-          </ul>
-        </div>
+        <a class="nav-link dropdown-toggle ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ userid }}</a>
+        <ul class="dropdown-menu px-2">
+          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i>My account</a></li>
+          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i>Change password</a></li>
+          {% logout_with_post as logout_with_post %}
+          {% if logout_with_post %}
+          <!-- The text colour doesn't change dynamically :( -->
+          <form action="{{ logout_url }}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-link dropdown-item" type="submit"><i class="fa fa-sign-out-alt fa-fw"></i>Sign out</button>
+          </form>
+          {% else %}
+          <li><a class="dropdown-item" href="{{ logout_url }}"><i class="fa fa-sign-out-alt fa-fw"></i>Sign out</a></li>
+          {% endif %}
+        </ul>
       {% else %}
         {# Unauthenticated user #}
-        <div class="dropdown">
-          <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-fw fa-user"></i> Sign in <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu px-2">
-            <li><a href="{{ login_url }}"><i class="fa fa-fw fa-sign-in-alt"></i>Sign in</a></li> <!-- sign in -->
-            <li><a href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i>Register</a></li>
-          </ul>
-        </div>
+        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="far fa-fw fa-user"></i> Sign in <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{ login_url }}"><i class="fa fa-fw fa-sign-in-alt"></i>Sign in</a></li>
+          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i>Register</a></li>
+        </ul>
       {% endif %}
+      </li>
+    </ul>
 
     {% endif %}
     {% endblock user_status %}
