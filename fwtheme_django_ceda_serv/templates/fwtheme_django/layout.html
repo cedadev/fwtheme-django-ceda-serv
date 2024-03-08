@@ -74,8 +74,8 @@
         {# Authenticated user #}
         <a class="nav-link dropdown-toggle ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ userid }}</a>
         <ul class="dropdown-menu px-2">
-          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/myceda/user/"><i class="fa fa-user fa-fw"></i>My account</a></li>
-          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/myceda/passwd/"><i class="fa fa-lock fa-fw"></i>Change password</a></li>
+          <li><a class="dropdown-item" href="{{ account_console_url }}"><i class="fa fa-user fa-fw"></i>My account</a></li>
+          <li><a class="dropdown-item" href="{{ account_security_url }}"><i class="fa fa-lock fa-fw"></i>Change password</a></li>
           {% logout_with_post as logout_with_post %}
           {% if logout_with_post %}
           <!-- The text colour doesn't change dynamically :( -->
@@ -94,7 +94,7 @@
         </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{{ login_url }}"><i class="fa fa-fw fa-sign-in-alt"></i>Sign in</a></li>
-          <li><a class="dropdown-item" href="https://services.ceda.ac.uk/cedasite/register/info/"><i class="fa fa-fw fa-user"></i>Register</a></li>
+          <li><a class="dropdown-item" href="{{ account_registration_url }}"><i class="fa fa-fw fa-user"></i>Register</a></li>
         </ul>
       {% endif %}
       </li>
