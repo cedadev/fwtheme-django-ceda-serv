@@ -73,7 +73,7 @@
       {% if userid %}
         {# Authenticated user #}
         <a class="nav-link dropdown-toggle ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ userid }}</a>
-        <ul class="dropdown-menu px-2">
+        <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{{ account_console_url }}"><i class="fa fa-user fa-fw"></i> My account</a></li>
           <li><a class="dropdown-item" href="{{ account_security_url }}"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
           {% logout_with_post as logout_with_post %}
