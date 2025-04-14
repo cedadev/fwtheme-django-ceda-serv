@@ -1,5 +1,13 @@
 from .default_settings import DC_TEMPLATES, DATACENTRES, BEACONS
 
+from django.conf import settings
+
+
+ACCOUNT_REGISTRATION_URL_DEFAULT = "https://accounts.ceda.ac.uk/realms/ceda/account/#/personal-info"
+ACCOUNT_CONSOLE_URL_DEFAULT = "https://accounts.ceda.ac.uk/realms/ceda/account/#/personal-info"
+ACCOUNT_SECURITY_URL_DEFAULT = "https://accounts.ceda.ac.uk/realms/ceda/account/#/personal-info"
+
+
 def data_centre(request):
     """
     Determine which data centre template is extended
@@ -44,3 +52,14 @@ def arrival_beacon(request):
     else:
         return {"beacon":BEACONS['Arrivals']}
 
+def account_management_urls(request):
+
+    # Account management URLs can be overriden, otherwise defaults are used
+    return {
+        "account_registration_url": getattr(
+            settings, "ACCOUNT_REGISTRATION_URL", ACCOUNT_REGISTRATION_URL_DEFAULT),
+        "account_console_url": getattr(
+            settings, "ACCOUNT_CONSOLE_URL", ACCOUNT_CONSOLE_URL_DEFAULT),
+        "account_security_url": getattr(
+            settings, "ACCOUNT_SECURITY_URL", ACCOUNT_SECURITY_URL_DEFAULT)
+    }
