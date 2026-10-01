@@ -16,7 +16,8 @@ DATACENTRES = {
     'ngdc': 'British Geological Survey',
     'ssdc': 'UK Solar System Data Centre',
     'edc' : 'UK Energy Research Centre',
-    'sparc': 'Stratosphere-troposphere Processes And their Role in Climate'
+    'sparc': 'Stratosphere-troposphere Processes And their Role in Climate',
+    'ipcc': 'Intergovernmental Panel on Climate Change'
 }
 # DATACENTRE THEMES
 DC_TEMPLATES = {
@@ -29,7 +30,8 @@ DC_TEMPLATES = {
     'ngdc': 'ngdc.html',
     'ssdc': 'ssdc.html',
     'edc': 'edc.html',
-    'sparc': 'sparc.html'
+    'sparc': 'sparc.html',
+    'ipcc': 'ipcc.html'
 }
 
 BEACONS = {
