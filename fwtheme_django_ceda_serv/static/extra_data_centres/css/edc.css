@@ -111,7 +111,11 @@ a {
     color: black !important;
 }
 a:hover {
-  color: black !important;
+  color: black;
+}
+
+a.btn {
+    color: white;
 }
 
 .breadcrumb-item.active{
@@ -136,8 +140,13 @@ color: black;
  color: black;
 }
 
-/* .btn {
-    background-color: rgb(3, 98, 92) !important;
+.btn {
+    background-color: rgb(1, 110, 103) !important;
     color: white !important;
     outline-color: white !important; 
-} */
+
+} 
+
+.btn:hover {
+    background-color: black !important;
+}
