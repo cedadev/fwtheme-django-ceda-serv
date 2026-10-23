@@ -150,3 +150,11 @@ color: black;
 .btn:hover {
     background-color: black !important;
 }
+
+a.btn-outline-warning {
+border-color: white;
+}
+
+a.btn-outline-warning:hover {
+border-color: white;
+}
